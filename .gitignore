@@ -1,0 +1,16 @@
+/build/
+/install/
+/log/
+
+/ext/
+
+/.vscode/settings.json
+/.history/
+
+__pycache__/
+
+node_modules/
+TODOList.md
+
+blackbox_links/abu2024_archive/*
+blackbox_links/abu2024_blackbox/*
