@@ -1,5 +1,15 @@
 repositories:
-  ext/aws-robomaker-small-warehouse-world:
+  src/aws-robomaker-small-warehouse-world:
     type: git
     url: https://github.com/aws-robotics/aws-robomaker-small-warehouse-world.git
     version: ros2
+  
+  src/emcl2_ros2:
+    type: git
+    url: https://github.com/Ayrton2718/emcl2_ros2.git
+    version: main
+
+  src/turtlebot3_simulations:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+    version: main

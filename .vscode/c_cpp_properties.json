@@ -1,0 +1,60 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/sen/ros2_ws/robocon-os/install/csmbus/include/**",
+        "/home/sen/ros2_ws/robocon-os/install/blackbox/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/csmbus_launcher/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/control_panel_msgs/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/tut_tool/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/rosbag_rviz_panel/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/blackbox_record_node/include/**",
+        "/home/sen/ros2_ws/rc-ros/install/blackbox/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/lcmcl/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/path_planner/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/tutmath/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/bt_commander/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/gamesir_x2_ros/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/sim_lcmcl/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/silo_ball_detector_debug/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/lcmcl_topics/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/lc_map/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/launcher_daemon/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/control_panel_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/tut_tool/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/strategy_interfaces/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/storage_ball_detector_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/static_route/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/smart_phone_controller/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/silo_ball_detector_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/rosbag_rviz_panel/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/realsense2_camera/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/realsense2_camera_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/navigation_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/lcmcl_msgs/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/keyboard_io_interface/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/gamesir_x2_msg/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/collision/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/bt_action_interface/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/blackbox_record_node/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/behavior_topic/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/behavior_socket/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/blackbox/include/**",
+        "/home/sen/ros2_ws/ABU2024_ros2_ws-v4/install/behavior_header/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/sen/ros_workspaces/ros2-particlefilter-1d_laser/src/emcl2/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
