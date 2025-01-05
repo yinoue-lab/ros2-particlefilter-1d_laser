@@ -24,7 +24,8 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-TURTLEBOT3_MODEL = "waffle_lidar"
+# TURTLEBOT3_MODEL = "waffle_lidar"
+TURTLEBOT3_MODEL = "waffle_1d_laser"
 
 package_name = 'simulation_launcher'
 
