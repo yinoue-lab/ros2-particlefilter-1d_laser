@@ -29,7 +29,7 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="1.3729096"/>
+      <mass value="3.0"/>
       <inertia ixx="8.7002718e-03" ixy="-4.7576583e-05" ixz="1.1160499e-04"
                 iyy="8.6195418e-03" iyz="-3.5422299e-06" izz="1.4612727e-02" />
     </inertial>
@@ -71,7 +71,15 @@
   <xacro:caster_macro name="caster_back_right" x="-0.177" y="-0.064" z="-0.004"/>
   <xacro:caster_macro name="caster_back_left" x="-0.177" y="0.064" z="-0.004"/>
   <xacro:imu_macro name="tb3_imu" parent="base_link" xyz="0.0 0 0.068" />
-  <xacro:dt35_macro name="dt35_laser" parent="base_link" xyz="-0.064 0 0.122" />
+
+  <xacro:dt35_macro name="front_laser" parent="base_link" x="0.069" y="0" yaw="0" />
+  <xacro:dt35_macro name="lf_laser" parent="base_link" x="0.069" y="0.133" yaw="45" />
+  <xacro:dt35_macro name="l_laser" parent="base_link" x="0.0" y="0.133" yaw="90" />
+  <xacro:dt35_macro name="lb_laser" parent="base_link" x="-0.197" y="0.133" yaw="135" />
+  <xacro:dt35_macro name="rf_laser" parent="base_link" x="0.069" y="-0.133" yaw="-45" />
+  <xacro:dt35_macro name="r_laser" parent="base_link" x="0.0" y="-0.133" yaw="-90" />
+  <xacro:dt35_macro name="rb_laser" parent="base_link" x="-0.197" y="-0.133" yaw="-135" />
+  <xacro:dt35_macro name="back_laser" parent="base_link" x="-0.197" y="0" yaw="180" />
 
   <gazebo>
     <plugin name="turtlebot3_diff_drive" filename="libgazebo_ros_diff_drive.so">
