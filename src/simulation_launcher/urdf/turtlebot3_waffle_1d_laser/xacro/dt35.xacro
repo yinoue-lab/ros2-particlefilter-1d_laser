@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="dt35_macro" params="name parent xyz">
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child  link="${name}_link"/>
+      <origin xyz="${xyz}" rpy="0 0 0"/>
+    </joint>
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.055" length="0.0315" />
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="0.055" length="0.0315" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.114" />
+        <origin xyz="0 0 0" />
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+                iyy="0.001" iyz="0.0"
+                izz="0.001" />
+      </inertial>
+    </link>
+
+    <gazebo reference="${name}_link">
+      <sensor type="ray" name="${name}">
+        <pose>-0.064 0 0.121 0 0 0</pose>
+        <visualize>true</visualize>
+        <always_on>true</always_on>
+        <update_rate>30</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>30.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+            <!-- <namespace>/my_robot</namespace> -->
+            <remapping>~/out:=range</remapping>
+          </ros>
+          <output_type>sensor_msgs/Range</output_type>
+          <frameName>${name}_link</frameName>
+          <radiation_type>infrared</radiation_type>
+          <field_of_view>0.008726646259971648</field_of_view>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>
+

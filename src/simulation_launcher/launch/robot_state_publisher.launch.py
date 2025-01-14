@@ -24,20 +24,16 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-# TURTLEBOT3_MODEL = "waffle_lidar"
-TURTLEBOT3_MODEL = "waffle_1d_laser"
+ROBOT_MODEL = "turtlebot3_waffle_1d_laser"
 
 package_name = 'simulation_launcher'
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-    urdf_file_name = 'turtlebot3_' + TURTLEBOT3_MODEL + '.urdf'
 
-    print('urdf_file_name : {}'.format(urdf_file_name))
+    urdf_file = os.path.join(get_package_share_directory(package_name), 'urdf', ROBOT_MODEL, 'robot.urdf')
 
-    urdf_path = os.path.join(get_package_share_directory(package_name), 'urdf', urdf_file_name)
-
-    with open(urdf_path, 'r') as infp:
+    with open(urdf_file, 'r') as infp:
         robot_desc = infp.read()
 
     return LaunchDescription([
