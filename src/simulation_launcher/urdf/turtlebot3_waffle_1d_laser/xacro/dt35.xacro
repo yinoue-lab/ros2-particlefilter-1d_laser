@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="dt35_macro" params="name parent x y yaw">
+  <xacro:macro name="dt35_macro" params="namespace name parent x y yaw">
     <joint name="${name}_joint" type="fixed">
       <parent link="${parent}"/>
       <child  link="${name}_link"/>
@@ -45,12 +45,12 @@
             <horizontal>
               <samples>1</samples>
               <resolution>1</resolution>
-              <min_angle>0</min_angle>
-              <max_angle>0</max_angle>
+              <min_angle>-0.01</min_angle>
+              <max_angle>0.01</max_angle>
             </horizontal>
           </scan>
           <range>
-            <min>0.0</min>
+            <min>0.1</min>
             <max>30.0</max>
             <resolution>0.01</resolution>
           </range>
@@ -62,13 +62,12 @@
         </ray>
         <plugin name="${name}_plugin" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-            <!-- <namespace>/my_robot</namespace> -->
-            <remapping>~/out:=range</remapping>
+            <namespace>${namespace}</namespace>
+            <remapping>~/out:=${name}_range</remapping>
           </ros>
           <output_type>sensor_msgs/Range</output_type>
-          <frameName>${name}_link</frameName>
+          <frame_name>${name}_link</frame_name>
           <radiation_type>infrared</radiation_type>
-          <field_of_view>0.008726646259971648</field_of_view>
         </plugin>
       </sensor>
     </gazebo>
