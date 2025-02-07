@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<robot name="R2" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<link name="base_link"/>
+
+	<!-- ============START Sick============ -->
+	<joint name="laser_l_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_l"/>
+		<origin xyz="0.08367 0.28176 0.0" rpy="${radians(0)} 0 ${radians(90)}"/>
+	</joint>
+	<link name="laser_l"/>
+
+	<joint name="laser_r_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_r"/>
+		<origin xyz="0.08367 -0.28176 0.0" rpy="${radians(0)} 0 ${radians(-90)}"/>
+	</joint>
+	<link name="laser_r"/>
+
+	<joint name="laser_bl_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_bl"/>
+		<origin xyz="0.05681 0.21247 0.0" rpy="${radians(0)} 0 ${radians(165)}"/>
+	</joint>
+	<link name="laser_bl"/>
+
+	<joint name="laser_br_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_br"/>
+		<origin xyz="0.05681 -0.21247 0.0" rpy="${radians(0)} 0 ${radians(-165)}"/>
+	</joint>
+	<link name="laser_br"/>
+
+	<joint name="laser_100fr_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_100fr"/>
+		<origin xyz="-0.28168 -0.064 0.0" rpy="${radians(0)} 0 ${radians(0)}"/>
+	</joint>
+	<link name="laser_100fr"/>
+
+	<joint name="laser_100fl_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_100fl"/>
+		<origin xyz="-0.28168 0.064 0.0" rpy="${radians(0)} 0 ${radians(0)}"/>
+	</joint>
+	<link name="laser_100fl"/>
+
+	<joint name="laser_100r_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_100r"/>
+		<origin xyz="0.09965 -0.28623 0.0" rpy="${radians(0)} 0 ${radians(-120)}"/>
+	</joint>
+	<link name="laser_100r"/>
+
+	<joint name="laser_100l_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_100l"/>
+		<origin xyz="0.09965 0.28623 0.0" rpy="${radians(0)} 0 ${radians(120)}"/>
+	</joint>
+	<link name="laser_100l"/>
+	<!-- ============END Sick============ -->
+
+	<joint name="damper_l_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="damper_l"/>
+		<origin xyz="-0.34083 0.070 0.0" rpy="${radians(0)} 0 ${radians(180)}"/>
+	</joint>
+	<link name="damper_l"/>
+
+	<joint name="damper_r_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="damper_r"/>
+		<origin xyz="-0.34083 -0.070 0.0" rpy="${radians(0)} 0 ${radians(-180)}"/>
+	</joint>
+	<link name="damper_r"/>
+
+	<!-- ==========START Tier============ -->
+	<joint name="tire_lf_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="tire_lf"/>
+		<origin xyz="0.18317 0.220 0.0" rpy="${radians(0)} ${radians(90)} ${radians(45)}"/>
+	</joint>
+	<link name="tire_lf"/>
+
+	<joint name="tire_rf_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="tire_rf"/>
+		<origin xyz="0.18317 -0.220 0.0" rpy="${radians(0)} ${radians(90)} ${radians(-135)}"/>
+	</joint>
+	<link name="tire_rf"/>
+
+	<joint name="tire_lb_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="tire_lb"/>
+		<origin xyz="-0.24383 0.150 0.0" rpy="${radians(0)} ${radians(90)} ${radians(45)}"/>
+	</joint>
+	<link name="tire_lb"/>
+
+	<joint name="tire_rb_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="tire_rb"/>
+		<origin xyz="-0.24383 -0.150 0.0" rpy="${radians(0)} ${radians(90)} ${radians(-135)}"/>
+	</joint>
+	<link name="tire_rb"/>
+	<!-- ============END Tier============ -->
+
+	<!-- ==========START Sensor========== -->
+	<joint name="d455_storage_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="d455_storage"/>
+		<origin xyz="0.1419 -0.0250 0.5680" rpy="${radians(0)} ${radians(26)} ${radians(0)}"/>
+	</joint>
+	<link name="d455_storage"/>
+
+	<joint name="d455_silo_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="d455_silo"/>
+		<origin xyz="-0.3159 -0.1700 0.4277" rpy="${radians(0)} ${radians(0)} ${radians(176)}"/>
+	</joint>
+	<link name="d455_silo"/>
+
+	<joint name="c1_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="c1"/>
+		<origin xyz="-0.3159 -0.1092 0.4617" rpy="${radians(0)} ${radians(0)} ${radians(176)}"/>
+	</joint>
+	<link name="c1"/>
+
+	<!-- <joint name="c1_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="c1"/>
+		<origin xyz="-0.3348 0.0 0.2525" rpy="${radians(0)} ${radians(0)} ${radians(180)}"/>
+	</joint>
+	<link name="c1"/> -->
+
+	<!-- <joint name="camera_link_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="camera_link"/>
+		<origin xyz="0.0308 -0.0250 0.5613" rpy="${radians(0)} ${radians(26)} ${radians(0)}"/>
+	</joint>
+	<link name="camera_link"/> -->
+
+	<!-- <joint name="c1_base_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="c1_base"/>
+		<origin xyz="-0.3816 0.0 0.2525" rpy="${radians(0)} ${radians(90)} ${radians(180)}"/>
+	</joint>
+	<link name="c1_base"/>
+
+	<joint name="c1_joint" type="fixed">
+		<parent link="c1_base"/>
+		<child link="c1"/>
+		<origin xyz="0.0 0.0 0.0" rpy="${radians(0)} ${radians(0)} ${radians(270)}"/>
+	</joint>
+	<link name="c1"/> -->
+	<!-- ===========END Sensor=========== -->
+
+</robot>

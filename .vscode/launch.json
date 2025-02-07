@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "ros",
+            "request": "launch",
+            "target": "${workspaceFolder}/src/1d-particle-filter/sim_lcmcl/launch/sim_lcmcl.launch.py",
+            // "preLaunchTask":"Build workspace (debug)"
+        }
+    ]
+}
