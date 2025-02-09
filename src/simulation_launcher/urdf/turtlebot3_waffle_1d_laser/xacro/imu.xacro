@@ -57,6 +57,7 @@
         </imu>
         <plugin name="${name}_plugin" filename="libgazebo_ros_imu_sensor.so">
           <ros>
+            <namespace>waffle_1d</namespace>
             <remapping>~/out:=imu</remapping>
           </ros>
         </plugin>

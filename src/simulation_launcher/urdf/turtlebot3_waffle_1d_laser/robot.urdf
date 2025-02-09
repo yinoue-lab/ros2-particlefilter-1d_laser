@@ -6,9 +6,9 @@
 <robot name="turtlebot3_waffle_1d">
   <link name="base_footprint"/>
   <joint name="base_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="base_footprint"/>
-    <origin rpy="0 0 0" xyz="0 0 -0.010"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.010"/>
   </joint>
   <!-- Links and Joints -->
   <link name="base_link">
@@ -182,6 +182,7 @@
       </imu>
       <plugin filename="libgazebo_ros_imu_sensor.so" name="tb3_imu_plugin">
         <ros>
+          <namespace>waffle_1d</namespace>
           <remapping>~/out:=imu</remapping>
         </ros>
       </plugin>
@@ -734,7 +735,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="turtlebot3_diff_drive">
       <ros>
-        <!-- <namespace>/tb3</namespace> -->
+        <namespace>waffle_1d</namespace>
       </ros>
       <update_rate>30</update_rate>
       <!-- wheels -->

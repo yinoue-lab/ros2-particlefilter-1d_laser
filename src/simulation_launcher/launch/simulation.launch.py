@@ -16,16 +16,13 @@ def generate_launch_description():
     subprocess.run(["blackbox_create"]) 
 
     ld = LaunchDescription()
-    x_pose = LaunchConfiguration('x_pose', default='-2.0')
-    y_pose = LaunchConfiguration('y_pose', default='-0.5')
     
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'launch', 'no_roof_small_warehouse.launch.py')
             ),
-            launch_arguments={'headless': 'True'}.items()
-
+            launch_arguments={'headless': 'False'}.items()
         )
     )
     
@@ -33,7 +30,12 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory(package_name), 'launch', 'spawn_robot.launch.py')
-            )
+            ),
+            launch_arguments={
+                'x_pose': '4.0',
+                'y_pose': '2.5',
+                'yaw': str(-90.0 * 3.141592 / 180.0)
+            }.items()
         )
     )
 
@@ -45,12 +47,28 @@ def generate_launch_description():
         )
     )
 
-    # ld.add_action(
-    #     IncludeLaunchDescription(
-    #         PythonLaunchDescriptionSource(
-    #             os.path.join(get_package_share_directory('aws-robomaker-small-warehouse-world'), 'launch', 'no_roof_small_warehouse.launch.launch.py')
-    #         )
-    #     )
-    # )
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('sim_lcmcl'), 'launch', 'debug_rviz.launch.py')
+            )
+        )
+    )
+
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('lc_map'), 'launch', 'map_publisher.launch.py')
+            )
+        )
+    )
+
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('lcmcl'), 'launch', 'lcmcl.launch.py')
+            )
+        )
+    )
 
     return ld
