@@ -18,19 +18,19 @@ def generate_launch_description():
     # Launch configuration variables for simulation
     x_pose = LaunchConfiguration('x_pose', default='0.0')
     y_pose = LaunchConfiguration('y_pose', default='0.0')
-    yaw = LaunchConfiguration('yaw', default='0.0')  # YAW角（ラジアン単位）
+    yaw_pose = LaunchConfiguration('yaw_pose', default='0.0')  # YAW角（ラジアン単位）
 
     # Declare the launch arguments
-    declare_x_position_cmd = DeclareLaunchArgument(
+    declare_x_pose_cmd = DeclareLaunchArgument(
         'x_pose', default_value='0.0',
         description='初期x座標を指定します'
     )
-    declare_y_position_cmd = DeclareLaunchArgument(
+    declare_y_pose_cmd = DeclareLaunchArgument(
         'y_pose', default_value='0.0',
         description='初期y座標を指定します'
     )
-    declare_yaw_cmd = DeclareLaunchArgument(
-        'yaw', default_value='0.0',
+    declare_yaw_pose_cmd = DeclareLaunchArgument(
+        'yaw_pose', default_value='0.0',
         description='初期yaw角（ラジアン単位）を指定します'
     )
 
@@ -45,13 +45,13 @@ def generate_launch_description():
             '-x', x_pose,
             '-y', y_pose,
             '-z', '0.01',
-            '-Y', yaw  # yaw角を指定する引数
+            '-Y', yaw_pose  # yaw角を指定する引数
         ]
     )
 
     return LaunchDescription([
-        declare_x_position_cmd,
-        declare_y_position_cmd,
-        declare_yaw_cmd,
+        declare_x_pose_cmd,
+        declare_y_pose_cmd,
+        declare_yaw_pose_cmd,
         spawn_entity
     ])

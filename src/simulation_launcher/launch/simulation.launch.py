@@ -22,7 +22,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'launch', 'no_roof_small_warehouse.launch.py')
             ),
-            launch_arguments={'headless': 'False'}.items()
+            launch_arguments={'headless': 'True'}.items()
         )
     )
     
@@ -34,7 +34,7 @@ def generate_launch_description():
             launch_arguments={
                 'x_pose': '4.0',
                 'y_pose': '2.5',
-                'yaw': str(-90.0 * 3.141592 / 180.0)
+                'yaw_pose': str(-90.0 * 3.141592 / 180.0)
             }.items()
         )
     )
@@ -46,6 +46,13 @@ def generate_launch_description():
             )
         )
     )
+
+    ld.add_action(Node(
+        package=package_name,
+        executable='tf_broadcaster',
+        name='tf_broadcaster',
+        parameters=[{'odom_topic': '/waffle_1d/true_position'}]
+    ))
 
     ld.add_action(
         IncludeLaunchDescription(
