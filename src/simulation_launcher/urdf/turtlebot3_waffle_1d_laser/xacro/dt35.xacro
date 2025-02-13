@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:macro name="dt35_macro" params="namespace name parent x y yaw">
+  <xacro:macro name="dt35_macro" params="name parent x y yaw">
     <joint name="${name}_joint" type="fixed">
       <parent link="${parent}"/>
       <child  link="${name}_link"/>
@@ -62,7 +62,6 @@
         </ray>
         <plugin name="${name}_plugin" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-            <namespace>${namespace}</namespace>
             <remapping>~/out:=${name}_range</remapping>
           </ros>
           <output_type>sensor_msgs/Range</output_type>

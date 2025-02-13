@@ -72,20 +72,18 @@
   <xacro:caster_macro name="caster_back_left" x="-0.177" y="0.064" z="-0.004"/>
   <xacro:imu_macro name="tb3_imu" parent="base_link" xyz="0.0 0 0.068" />
 
-  <xacro:dt35_macro namespace="waffle_1d" name="front_laser" parent="base_link" x="0.069" y="0" yaw="0" />
-  <xacro:dt35_macro namespace="waffle_1d" name="lf_laser" parent="base_link" x="0.069" y="0.133" yaw="45" />
-  <xacro:dt35_macro namespace="waffle_1d" name="l_laser" parent="base_link" x="0.0" y="0.133" yaw="90" />
-  <xacro:dt35_macro namespace="waffle_1d" name="lb_laser" parent="base_link" x="-0.197" y="0.133" yaw="135" />
-  <xacro:dt35_macro namespace="waffle_1d" name="rf_laser" parent="base_link" x="0.069" y="-0.133" yaw="-45" />
-  <xacro:dt35_macro namespace="waffle_1d" name="r_laser" parent="base_link" x="0.0" y="-0.133" yaw="-90" />
-  <xacro:dt35_macro namespace="waffle_1d" name="rb_laser" parent="base_link" x="-0.197" y="-0.133" yaw="-135" />
-  <xacro:dt35_macro namespace="waffle_1d" name="back_laser" parent="base_link" x="-0.197" y="0" yaw="180" />
+  <xacro:dt35_macro name="front_laser" parent="base_link" x="0.069" y="0" yaw="0" />
+  <xacro:dt35_macro name="lf_laser" parent="base_link" x="0.069" y="0.133" yaw="45" />
+  <xacro:dt35_macro name="l_laser" parent="base_link" x="0.0" y="0.133" yaw="90" />
+  <xacro:dt35_macro name="lb_laser" parent="base_link" x="-0.197" y="0.133" yaw="135" />
+  <xacro:dt35_macro name="rf_laser" parent="base_link" x="0.069" y="-0.133" yaw="-45" />
+  <xacro:dt35_macro name="r_laser" parent="base_link" x="0.0" y="-0.133" yaw="-90" />
+  <xacro:dt35_macro name="rb_laser" parent="base_link" x="-0.197" y="-0.133" yaw="-135" />
+  <xacro:dt35_macro name="back_laser" parent="base_link" x="-0.197" y="0" yaw="180" />
 
   <gazebo>
     <plugin name="turtlebot3_diff_drive" filename="libgazebo_ros_diff_drive.so">
-
       <ros>
-        <namespace>waffle_1d</namespace>
       </ros>
 
       <update_rate>30</update_rate>
@@ -119,8 +117,7 @@
   <gazebo>
     <plugin name="gazebo_ros_p3d" filename="libgazebo_ros_p3d.so">
       <ros>
-        <namespace>waffle_1d</namespace>
-        <remapping>odom:=true_position</remapping>
+        <remapping>odom:=gazebo_position</remapping>
       </ros>
       <body_name>base_footprint</body_name>
       <frame_name>map</frame_name>

@@ -32,9 +32,9 @@ def generate_launch_description():
                 os.path.join(get_package_share_directory(package_name), 'launch', 'spawn_robot.launch.py')
             ),
             launch_arguments={
-                'x_pose': '4.0',
-                'y_pose': '2.5',
-                'yaw_pose': str(-90.0 * 3.141592 / 180.0)
+                'x_pose': '0',
+                'y_pose': '0',
+                'yaw_pose': '0',
             }.items()
         )
     )
@@ -47,25 +47,10 @@ def generate_launch_description():
         )
     )
 
-    ld.add_action(Node(
-        package=package_name,
-        executable='tf_broadcaster',
-        name='tf_broadcaster',
-        parameters=[{'odom_topic': '/waffle_1d/true_position'}]
-    ))
-
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('sim_lcmcl'), 'launch', 'debug_rviz.launch.py')
-            )
-        )
-    )
-
-    ld.add_action(
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory('lc_map'), 'launch', 'map_publisher.launch.py')
             )
         )
     )

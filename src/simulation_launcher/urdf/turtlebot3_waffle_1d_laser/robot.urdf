@@ -247,7 +247,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="front_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=front_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -315,7 +314,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="lf_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=lf_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -383,7 +381,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="l_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=l_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -451,7 +448,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="lb_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=lb_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -519,7 +515,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="rf_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=rf_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -587,7 +582,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="r_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=r_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -655,7 +649,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="rb_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=rb_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -723,7 +716,6 @@
       </ray>
       <plugin filename="libgazebo_ros_ray_sensor.so" name="back_laser_plugin">
         <ros>
-          <namespace>waffle_1d</namespace>
           <remapping>~/out:=back_laser_range</remapping>
         </ros>
         <output_type>sensor_msgs/Range</output_type>
@@ -735,7 +727,6 @@
   <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="turtlebot3_diff_drive">
       <ros>
-        <namespace>waffle_1d</namespace>
       </ros>
       <update_rate>30</update_rate>
       <!-- wheels -->
@@ -760,8 +751,7 @@
   <gazebo>
     <plugin filename="libgazebo_ros_p3d.so" name="gazebo_ros_p3d">
       <ros>
-        <namespace>waffle_1d</namespace>
-        <remapping>odom:=true_position</remapping>
+        <remapping>odom:=gazebo_position</remapping>
       </ros>
       <body_name>base_footprint</body_name>
       <frame_name>map</frame_name>
