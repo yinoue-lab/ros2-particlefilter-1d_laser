@@ -3,7 +3,7 @@ from launch_ros.actions import Node
 import os
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from ament_index_python.packages import get_package_share_directory
@@ -62,5 +62,14 @@ def generate_launch_description():
             )
         )
     )
+
+    ld.add_action(ExecuteProcess(
+        cmd=[
+            'xterm', '-e',
+            'ros2', 'run', 'teleop_twist_keyboard', 'teleop_twist_keyboard',
+            '--ros-args', '--remap', '/cmd_vel:=/waffle_1d/cmd_vel'
+        ],
+        output='screen'
+    ))
 
     return ld
