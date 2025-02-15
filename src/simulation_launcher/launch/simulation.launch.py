@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch_ros.actions import Node
+from launch_ros.actions import Node, SetParameter
 import os
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
@@ -14,15 +14,26 @@ package_name = 'simulation_launcher'
 
 def generate_launch_description():
     subprocess.run(["blackbox_create"]) 
+    
+    headless = LaunchConfiguration('headless')
 
     ld = LaunchDescription()
+
+    ld.add_action(DeclareLaunchArgument(
+        'headless',
+        default_value='False',
+        description='Whether to execute gzclient)'))
+
+    ld.add_action(
+        SetParameter(name='use_sim_time', value=True)
+    )
     
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'launch', 'no_roof_small_warehouse.launch.py')
             ),
-            launch_arguments={'headless': 'True'}.items()
+            launch_arguments={'headless': headless}.items()
         )
     )
     
