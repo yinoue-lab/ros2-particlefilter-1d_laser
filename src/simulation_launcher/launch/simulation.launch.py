@@ -13,6 +13,7 @@ import subprocess
 package_name = 'simulation_launcher'
 
 def generate_launch_description():
+    subprocess.run(["blackbox_archive"]) 
     subprocess.run(["blackbox_create"]) 
     
     headless = LaunchConfiguration('headless')
@@ -70,7 +71,40 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('lcmcl'), 'launch', 'lcmcl.launch.py')
-            )
+            ),
+            launch_arguments={
+                'publish_topic_pf': 'pf_odom',
+                'publish_topic_kf': 'kf_odom',
+                'subscribe_topic_odom': '/waffle_1d/odom',
+                }.items()
+        )
+    )
+
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('odom_evaluator'), 'launch', 'odom_evaluator.launch.py')
+            ),
+            launch_arguments={
+                'true_odom_topic': '/waffle_1d/true_position',
+                'est_odom_topic': '/localization/pf_odom',
+                'eval_mean_odom_topic': 'pf_eval_odom',
+                'node_name': 'pf_evaluator'
+                }.items()
+        )
+    )
+
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('odom_evaluator'), 'launch', 'odom_evaluator.launch.py')
+            ),
+            launch_arguments={
+                'true_odom_topic': '/waffle_1d/true_position',
+                'est_odom_topic': '/localization/kf_odom',
+                'eval_mean_odom_topic': 'kf_eval_odom',
+                'node_name': 'kf_evaluator'
+                }.items()
         )
     )
 
