@@ -10,6 +10,13 @@ ROBOT_MODEL = "turtlebot3_waffle_1d_laser"
 package_name = 'simulation_launcher'
 
 def generate_launch_description():
+
+    declare_only_broadcaster_cmd = DeclareLaunchArgument(
+        'only_broadcaster',
+        default_value='False',
+        description='Switch enable spawn.py.'
+    )
+
     # x, y, yawのoffset（初期位置）のLaunch引数を宣言
     declare_x_pose_cmd = DeclareLaunchArgument(
         'x_pose',
@@ -45,6 +52,8 @@ def generate_launch_description():
     )
 
     def launch_setup(context, *args, **kwargs):
+        only_broadcaster_val = LaunchConfiguration('only_broadcaster').perform(context)
+
         # Launch引数から値を取得
         x_offset_val = LaunchConfiguration('x_pose').perform(context)
         y_offset_val = LaunchConfiguration('y_pose').perform(context)
@@ -66,22 +75,23 @@ def generate_launch_description():
 
         ld_node_list = []
 
-        ld_node_list.append(Node(
-            package='gazebo_ros',
-            executable='spawn_entity.py',
-            name='spawn_robot',
-            output='screen',
-            arguments=[
-                '-entity', 'waffle_1d',
-                '-robot_namespace', 'waffle_1d',
-                '-file', urdf_file,
-                '-reference_frame', 'map',
-                '-x', str(x_offset_float),
-                '-y', str(y_offset_float),
-                '-z', '0.01',
-                '-Y', str(yaw_offset_float)  # yaw角を指定する引数
-            ]
-        ))
+        if only_broadcaster_val == 'False':
+            ld_node_list.append(Node(
+                package='gazebo_ros',
+                executable='spawn_entity.py',
+                name='spawn_robot',
+                output='screen',
+                arguments=[
+                    '-entity', 'waffle_1d',
+                    '-robot_namespace', 'waffle_1d',
+                    '-file', urdf_file,
+                    '-reference_frame', 'map',
+                    '-x', str(x_offset_float),
+                    '-y', str(y_offset_float),
+                    '-z', '0.01',
+                    '-Y', str(yaw_offset_float)  # yaw角を指定する引数
+                ]
+            ))
 
         ld_node_list.append(Node(
             package='sim_lcmcl',

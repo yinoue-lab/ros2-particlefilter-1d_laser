@@ -29,26 +29,18 @@ ROBOT_MODEL = "turtlebot3_waffle_1d_laser"
 package_name = 'simulation_launcher'
 
 def generate_launch_description():
-    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
-
     urdf_file = os.path.join(get_package_share_directory(package_name), 'urdf', ROBOT_MODEL, 'robot.urdf')
 
     with open(urdf_file, 'r') as infp:
         robot_desc = infp.read()
 
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'use_sim_time',
-            default_value='false',
-            description='Use simulation (Gazebo) clock if true'),
-
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             name='robot_state_publisher',
             output='screen',
             parameters=[{
-                'use_sim_time': use_sim_time,
                 'robot_description': robot_desc
             }],
         ),

@@ -16,40 +16,18 @@ def generate_launch_description():
     subprocess.run(["blackbox_archive"]) 
     subprocess.run(["blackbox_create"]) 
     
-    headless = LaunchConfiguration('headless')
+    bag_file = LaunchConfiguration('bag_file')
 
     ld = LaunchDescription()
 
     ld.add_action(DeclareLaunchArgument(
-        'headless',
-        default_value='False',
+        'bag_file',
+        default_value='None',
         description='Whether to execute gzclient)'))
+        
 
     ld.add_action(
         SetParameter(name='use_sim_time', value=True)
-    )
-    
-    ld.add_action(
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory('aws_robomaker_small_warehouse_world'), 'launch', 'no_roof_small_warehouse.launch.py')
-            ),
-            launch_arguments={'headless': headless}.items()
-        )
-    )
-    
-    ld.add_action(
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                os.path.join(get_package_share_directory(package_name), 'launch', 'spawn_robot.launch.py')
-            ),
-            launch_arguments={
-                'only_broadcaster': 'False',
-                'x_pose': '0',
-                'y_pose': '0',
-                'yaw_pose': '0',
-            }.items()
-        )
     )
 
     ld.add_action(
@@ -63,8 +41,25 @@ def generate_launch_description():
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory(package_name), 'launch', 'spawn_robot.launch.py')
+            ),
+            launch_arguments={
+                'only_broadcaster': 'True',
+                'x_pose': '0',
+                'y_pose': '0',
+                'yaw_pose': '0',
+            }.items()
+        )
+    )
+
+    ld.add_action(
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('sim_lcmcl'), 'launch', 'debug_rviz.launch.py')
-            )
+            ),
+            launch_arguments={
+                'rosbag_file': bag_file
+                }.items()
         )
     )
 
@@ -108,14 +103,5 @@ def generate_launch_description():
                 }.items()
         )
     )
-
-    ld.add_action(ExecuteProcess(
-        cmd=[
-            'xterm', '-e',
-            'ros2', 'run', 'teleop_twist_keyboard', 'teleop_twist_keyboard',
-            '--ros-args', '--remap', '/cmd_vel:=/waffle_1d/cmd_vel'
-        ],
-        output='screen'
-    ))
 
     return ld
