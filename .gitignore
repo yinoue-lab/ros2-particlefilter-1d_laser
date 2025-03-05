@@ -2,6 +2,9 @@
 /install/
 /log/
 
+/blackbox_log/
+/blackbox_archive/
+
 /ext/
 
 /.vscode/settings.json

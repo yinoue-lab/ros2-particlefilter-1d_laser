@@ -1,0 +1,3 @@
+[submodule "src/1d-particle-filter"]
+	path = src/1d-particle-filter
+	url = https://github.com/Ayrton2718/1d-particle-filter.git
