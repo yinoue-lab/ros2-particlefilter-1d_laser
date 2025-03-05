@@ -21,33 +21,33 @@ def generate_launch_description():
     declare_x_pose_cmd = DeclareLaunchArgument(
         'x_pose',
         default_value='0.0',
-        description='初期x座標 / x offset'
+        description='初期x座標 (m) / x offset'
     )
     declare_y_pose_cmd = DeclareLaunchArgument(
         'y_pose',
         default_value='0.0',
-        description='初期y座標 / y offset'
+        description='初期y座標 (m) / y offset'
     )
     declare_yaw_pose_cmd = DeclareLaunchArgument(
         'yaw_pose',
         default_value='0.0',
-        description='初期yaw角（ラジアン単位） / yaw offset'
+        description='初期yaw角（deg） / yaw offset'
     )
 
     # map_offset
     declare_map_offset_x_cmd = DeclareLaunchArgument(
         'map_offset_x',
-        default_value='3.0',
+        default_value='2.99',
         description='mapのx座標オフセット'
     )
     declare_map_offset_y_cmd = DeclareLaunchArgument(
         'map_offset_y',
-        default_value='2.2',
+        default_value='2.18',
         description='mapのy座標オフセット'
     )
     declare_map_offset_yaw_cmd = DeclareLaunchArgument(
         'map_offset_yaw',
-        default_value='-87.7',
+        default_value='-88.0',
         description='mapのyaw座標オフセット'
     )
 
@@ -64,10 +64,6 @@ def generate_launch_description():
         map_offset_y_val = LaunchConfiguration('map_offset_y').perform(context)
         map_offset_yaw_val = LaunchConfiguration('map_offset_yaw').perform(context)
 
-        x_offset_float = float(x_offset_val) + float(map_offset_x_val)
-        y_offset_float = float(y_offset_val) + float(map_offset_y_val)
-        yaw_offset_float = float(yaw_offset_val) + (float(map_offset_yaw_val) * math.pi / 180.0)
-
         urdf_file = os.path.join(
             get_package_share_directory(package_name),
             'urdf', ROBOT_MODEL, 'robot.urdf'
@@ -76,6 +72,7 @@ def generate_launch_description():
         ld_node_list = []
 
         if only_broadcaster_val == 'False':
+            # The x and y axes are inverted
             ld_node_list.append(Node(
                 package='gazebo_ros',
                 executable='spawn_entity.py',
@@ -86,10 +83,10 @@ def generate_launch_description():
                     '-robot_namespace', 'waffle_1d',
                     '-file', urdf_file,
                     '-reference_frame', 'map',
-                    '-x', str(x_offset_float),
-                    '-y', str(y_offset_float),
+                    '-x', str(float(y_offset_val) + float(map_offset_x_val)),
+                    '-y', str(-float(x_offset_val) + float(map_offset_y_val)),
                     '-z', '0.01',
-                    '-Y', str(yaw_offset_float)  # yaw角を指定する引数
+                    '-Y', str((float(yaw_offset_val) + float(map_offset_yaw_val)) * math.pi / 180.0)  # yaw角を指定する引数
                 ]
             ))
 
@@ -100,9 +97,9 @@ def generate_launch_description():
             parameters=[{
                 'odom_topic': '/waffle_1d/gazebo_position',
                 'offset_topic': '/waffle_1d/true_position',
-                'x_offset': -x_offset_float,
-                'y_offset': -y_offset_float,
-                'yaw_offset': -yaw_offset_float,
+                'x_offset': -float(map_offset_x_val),
+                'y_offset': -float(map_offset_y_val),
+                'yaw_offset': -float(map_offset_yaw_val) * math.pi / 180.0,
             }]
         ))
 
