@@ -16,12 +16,12 @@ def generate_launch_description():
     subprocess.run(["blackbox_archive"]) 
     subprocess.run(["blackbox_create"]) 
     
-    bag_file = LaunchConfiguration('bag_file')
+    bag_path = LaunchConfiguration('bag_path')
 
     ld = LaunchDescription()
 
     ld.add_action(DeclareLaunchArgument(
-        'bag_file',
+        'bag_path',
         default_value='None',
         description='Whether to execute gzclient)'))
         
@@ -58,7 +58,7 @@ def generate_launch_description():
                 os.path.join(get_package_share_directory('sim_lcmcl'), 'launch', 'debug_rviz.launch.py')
             ),
             launch_arguments={
-                'rosbag_file': bag_file
+                'rosbag_file': bag_path
                 }.items()
         )
     )

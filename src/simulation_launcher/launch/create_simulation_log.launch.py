@@ -52,6 +52,7 @@ def generate_launch_description():
             cmd=[
                 "ros2", "bag", "record",
                 "--storage", "mcap",
+                "--use-sim-time",
                 "-o", bag_output_dir
             ] + topics_to_record,
             output="screen"

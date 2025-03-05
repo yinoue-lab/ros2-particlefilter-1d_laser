@@ -7,7 +7,7 @@ tutrc_ament_init()
 
 # Install launch files.
 install(DIRECTORY
-    launch urdf
+    launch urdf config
     DESTINATION share/${PROJECT_NAME}/
 )
 
