@@ -21,6 +21,7 @@ sudo apt-get install python3-vcstool
 
 ### Install ros2
 ```sh
+git clone https://github.com/yinoue-lab/ros2-particlefilter-1d_laser.git
 ansible-playbook --ask-become-pass ansible/dev.yml
 ```
 
@@ -32,6 +33,7 @@ ansible-playbook --ask-become-pass ansible/dev.yml
 
 ## Docker
 ```sh
+git clone https://github.com/yinoue-lab/ros2-particlefilter-1d_laser.git
 docker build -t ros2-humble-image .
 ```
 
