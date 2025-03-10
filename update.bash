@@ -2,7 +2,7 @@
 
 DIR_NAME="$(dirname $0)"
 
-git submodule update --init --recursive
+git -C $DIR_NAME submodule update --init --recursive
 
 # Extentions
 rm -rf $DIR_NAME/build $DIR_NAME/install $DIR_NAME/log

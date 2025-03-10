@@ -31,7 +31,7 @@ def generate_launch_description():
     declare_yaw_pose_cmd = DeclareLaunchArgument(
         'yaw_pose',
         default_value='0.0',
-        description='初期yaw角（deg） / yaw offset'
+        description='初期yaw角 (deg) / yaw offset'
     )
 
     # map_offset
